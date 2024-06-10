@@ -5,13 +5,21 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
 
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        DestroySelf();
+        animator.SetTrigger("Get");
     }
 
     private void DestroySelf()
     {
         Destroy(gameObject);
     }
+
 }

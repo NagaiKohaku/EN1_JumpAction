@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class ArrowDraw : MonoBehaviour
 {
-    [SerializeField]
-    //矢印の画像
-    private Image arrowImage;
     //クリックした座標
     private Vector3 clickPosition;
 
-    void Start()
-    {
-
-    }
+    [SerializeField]
+    //矢印の画像
+    private Image arrowImage;
+    [SerializeField]
+    private GameObject player;
 
     void Update()
     {
@@ -42,8 +40,8 @@ public class ArrowDraw : MonoBehaviour
             //矢印の画像を表示させる
             arrowImage.enabled = true;
 
-            //矢印の画像をクリックした座標に移動させる
-            arrowImage.rectTransform.position = clickPosition;
+            //矢印の画像をスクリーン座標に変換したプレイヤーの座標に移動させる
+            arrowImage.rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main,player.transform.position);
 
             //矢印の画像をベクトルから取得した角度を度数法に変換してZ軸回転させる
             arrowImage.rectTransform.rotation =
